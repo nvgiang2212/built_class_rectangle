@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>aaa</title>
+</head>
+<body>
+	<canvas id="myCanvas" width="1300px" height="500px" style="border: 3px solid #d3d3d3"></canvas>
+	<script>
+		function Tangle(x, y, width, height)  {
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
+			this.getArea = function() {
+				return this.width * this.height;
+			}
+			this.getPeri = function() {
+				return (this.width + this.height) * 2;
+			}
+		}
+
+		function getRandomHex() {
+			return Math.floor(Math.random() * 255);
+		}
+
+		function getRandomColor() {
+			let red = getRandomHex();
+			let green = getRandomHex();
+			let blue = getRandomHex();
+			return "rgb(" + red + "," + green + "," + blue + ")";
+		}
+		
+		function Rectangle() {
+			let ctx = document.getElementById('myCanvas').getContext("2d");
+			let x = Math.floor(Math.random() * 1300);
+			let y = Math.floor(Math.random() * 500);
+			let width = Math.floor(Math.random() * 300);
+			let height = Math.floor(Math.random() * 150);
+			let color = getRandomColor();
+
+			let rectangle = new Tangle(x, y, width, height);
+			ctx.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+			ctx.fillStyle = color;
+			ctx.fill();
+			alert("S : " + rectangle.getArea() + "      " + "C : " + rectangle.getPeri());
+		}
+
+		Rectangle();
+	</script>		
+</body>
+</html>
